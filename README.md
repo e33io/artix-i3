@@ -1,6 +1,6 @@
 # Artix + i3
 
-![i3 screenshot](https://i.e33.io/img0/i3-Screenshot_2025-12-14.png)
+![i3 screenshot](https://i.e33.io/img0/i3-screenshot_2026-03-22.png)
 
 ### Features:
 - Custom [i3](https://i3wm.org) installation for [Artix](https://github.com/e33io/artix-i3/blob/main/scripts/install-i3.sh) (OpenRC)
