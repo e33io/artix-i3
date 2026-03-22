@@ -12,6 +12,7 @@
 - 18 system theme options (15 dark and 3 light)
 - 3 Rofi style options (dmenu, floating and panel)
 - Inter and [SovranMono](https://github.com/e33io/sovran-fonts) fonts
+- Systemd-free
 
 ### Installation:
 ```bash
