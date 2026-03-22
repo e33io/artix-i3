@@ -22,13 +22,17 @@ printf "%s\n" "" "# Start pipewire and wireplumber" \
 "exec --no-startup-id pipewire-pulse" \
 | tee -a ~/.config/i3/startup.conf > /dev/null
 
-# Replace systemctl with loginctl
-sed -i 's/systemctl/loginctl/g' ~/.local/bin/rofi-power.sh
-
 # Add aliases for reboot and power off
 printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 "alias poweroff='loginctl poweroff'" | tee -a ~/.bashrc > /dev/null
 
+# Replace systemctl with loginctl
+sed -i 's/systemctl/loginctl/g' ~/.local/bin/rofi-power.sh
+
 # Copy and update mate-color-select.desktop
 cp -R /usr/share/applications/mate-color-select.desktop ~/.local/share/applications/
 sed -i '/OnlyShowIn/d' ~/.local/share/applications/mate-color-select.desktop
+
+# Update ranger preview_images_method
+sed -i -e '/preview_images_method ueberzug/d' \
+-e 's/#set preview_images/set preview_images/' ~/.config/ranger/rc.conf
