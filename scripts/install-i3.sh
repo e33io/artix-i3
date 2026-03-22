@@ -17,12 +17,6 @@ if [ "$(id -u)" = 0 ]; then
 fi
 
 echo "========================================================================"
-echo "Clone custom scripts"
-echo "========================================================================"
-
-git clone https://github.com/e33io/scripts ~/scripts
-
-echo "========================================================================"
 echo "Update package list and upgrade system"
 echo "========================================================================"
 
@@ -43,6 +37,12 @@ micro fzf lazygit htop fastfetch cmus cava ranger ueberzug highlight atool w3m m
 perl-image-exiftool thunar thunar-archive-plugin thunar-volman tumbler ffmpegthumbnailer \
 xarchiver atril scrot imagemagick imv mpv parole mousepad galculator timeshift \
 signal-desktop darktable gimp inkscape filezilla libreoffice
+
+echo "========================================================================"
+echo "Clone custom scripts"
+echo "========================================================================"
+
+git clone https://github.com/e33io/scripts ~/scripts
 
 echo "========================================================================"
 echo "Install graphics drivers"
