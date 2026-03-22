@@ -54,6 +54,7 @@ if ! command -v yay > /dev/null 2>&1; then
     echo "========================================================================"
     echo "Setup Yay for AUR"
     echo "========================================================================"
+
     git clone https://aur.archlinux.org/yay-bin.git ~/yay-bin
     (cd ~/yay-bin && makepkg -si --noconfirm)
     rm -rf ~/yay-bin
@@ -85,14 +86,10 @@ for dir in gtk-3.0 micro qt5ct qt6ct; do
 done
 
 echo "========================================================================"
-echo "Install custom themes and change Papirus folders color"
+echo "Install custom themes"
 echo "========================================================================"
 
 bash ~/scripts/install-custom-themes.sh
-if ! command -v papirus-folders > /dev/null 2>&1; then
-    wget -qO- https://git.io/papirus-folders-install | sh
-fi
-papirus-folders -C adwaita --theme Papirus-Dark
 
 echo "========================================================================"
 echo "Run system options script to update device-specific configuration files"

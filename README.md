@@ -3,7 +3,7 @@
 ![i3 screenshot](https://i.e33.io/img0/i3-screenshot_2026-03-22.png)
 
 ### Features:
-- Custom [i3](https://i3wm.org) installation for [Artix](https://github.com/e33io/artix-i3/blob/main/scripts/install-i3.sh) (OpenRC)
+- Custom [i3](https://i3wm.org) installation for [Artix](https://artixlinux.org) (OpenRC)
 - Base set of apps for a ready-to-use desktop session
 - Options during installation for configuring:
 	- HiDPI or standard HD display scaling
