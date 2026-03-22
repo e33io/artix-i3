@@ -2,7 +2,7 @@
 
 # =============================================================================
 # System type and HiDPI options for modifying window manager configs
-# URL: https://github.com/e33io/scripts/blob/main/system-detect.sh
+# URL: https://github.com/e33io/artix-i3/blob/main/scripts/system-options.sh
 # -----------------------------------------------------------------------------
 # Use this script at your own risk, it will overwrite existing files!
 # =============================================================================

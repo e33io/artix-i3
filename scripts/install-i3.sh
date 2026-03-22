@@ -2,7 +2,7 @@
 
 # =============================================================================
 # Install i3 (window manager) on Artix Linux (OpenRC)
-# URL: https://github.com/e33io/scripts/blob/main/artix-install-i3.sh
+# URL: https://github.com/e33io/artix-i3/blob/main/scripts/install-i3.sh
 # -----------------------------------------------------------------------------
 # Use this script at your own risk, it will overwrite existing files!
 # =============================================================================

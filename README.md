@@ -3,9 +3,9 @@
 ![i3 screenshot](https://i.e33.io/img0/i3-Screenshot_2025-12-14.png)
 
 ### Features:
-- Custom [i3](https://i3wm.org) installation for [Artix](https://github.com/e33io/scripts/blob/main/artix-install-i3.sh)
+- Custom [i3](https://i3wm.org) installation for [Artix](https://github.com/e33io/artix-i3/blob/main/scripts/install-i3.sh) (OpenRC)
 - Base set of apps for a ready-to-use desktop session
-- Option [script](https://github.com/e33io/scripts/blob/main/system-detect.sh) for configuring:
+- Option [script](https://github.com/e33io/artix-i3/blob/main/scripts/system-options.sh) for configuring:
 	- HiDPI or standard HD display scaling
 	- Device-specific optimizations for desktop, laptop or VM devices
 - [Polybar](https://github.com/polybar/polybar) for system bar and app tray
