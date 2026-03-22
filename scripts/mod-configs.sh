@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# =============================================================================
+# Modify Arch configs for use with Artix Linux (OpenRC)
+# URL: https://github.com/e33io/scripts/blob/main/system-detect.sh
+# -----------------------------------------------------------------------------
+# Use this script at your own risk, it will overwrite existing files!
+# =============================================================================
+
+# Remove unneeded commands
+sed -i -e '/dex/d' -e '/xss-lock/d' ~/.config/i3/startup.conf
+sed -i '/xssproxy/d' ~/.profile
+
+# Add startup commands for xautolock
+printf "%s\n" "" "# Start xautolock with i3lock as locker" \
+"\$exec xautolock -time 5 -locker \"i3lock -i ~/.cache/i3lock/lock.png\"" \
+| tee -a ~/.config/i3/startup.conf > /dev/null
+
+# Add startup commands for pipewire
+printf "%s\n" "" "# Start pipewire and wireplumber" \
+"exec --no-startup-id pipewire" "exec --no-startup-id wireplumber" \
+"exec --no-startup-id pipewire-pulse" \
+| tee -a ~/.config/i3/startup.conf > /dev/null
+
+# Replace systemctl with loginctl
+sed -i 's/systemctl/loginctl/g' ~/.local/bin/rofi-power.sh
+
+# Add aliases for reboot and power off
+printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
+"alias poweroff='loginctl poweroff'" | tee -a ~/.bashrc > /dev/null
+
+# Copy and update mate-color-select.desktop
+cp -R /usr/share/applications/mate-color-select.desktop ~/.local/share/applications/
+sed -i '/OnlyShowIn/d' ~/.local/share/applications/mate-color-select.desktop
