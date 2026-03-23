@@ -28,9 +28,9 @@ echo "========================================================================"
 
 sudo pacman -S --noconfirm --needed xorg-server xorg-apps i3-wm i3status i3lock xautolock \
 polybar dmenu rofi dunst base-devel upower gvfs nfs-utils cifs-utils pipewire pipewire-pulse \
-pipewire-alsa wireplumber libmad gst-libav rsync cronie git curl wget tar less 7zip xsel \
-xclip xbindkeys xdotool playerctl xdg-desktop-portal-gtk xdg-user-dirs mate-polkit lightdm \
-lightdm-openrc lightdm-gtk-greeter lightdm-gtk-greeter-settings feh lxappearance \
+pipewire-alsa wireplumber libmad gst-libav rsync cronie cronie-openrc git curl wget tar less \
+7zip xsel xclip xbindkeys xdotool playerctl xdg-desktop-portal-gtk xdg-user-dirs mate-polkit \
+lightdm lightdm-openrc lightdm-gtk-greeter lightdm-gtk-greeter-settings feh lxappearance \
 gnome-themes-extra qt5ct qt6ct ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji \
 papirus-icon-theme breeze-icons plymouth pavucontrol-qt kitty xterm bash-completion vim nano \
 micro fzf lazygit htop fastfetch cmus cava ranger ueberzug highlight atool w3m mediainfo \
@@ -104,7 +104,7 @@ echo "========================================================================"
 bash ~/artix-i3/scripts/mod-configs.sh
 
 echo "========================================================================"
-echo "Update user directory and enable lightdm"
+echo "Update user directory and enable services"
 echo "========================================================================"
 
 xdg-user-dirs-update
@@ -114,6 +114,7 @@ sed -i "s/\/user\//\/$(whoami)\//" ~/.config/gtk-3.0/bookmarks \
 echo "i3 installed via e33io script: $(date '+%B %d, %Y, %H:%M')" \
 | tee -a ~/.install-info > /dev/null
 sudo rc-update add lightdm default
+sudo rc-update add cronie default
 rm -rf ~/dots ~/scripts
 
 echo "========================================================================"
