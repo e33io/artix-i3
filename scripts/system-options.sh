@@ -44,8 +44,9 @@ while true; do
         1) echo "You chose Desktop computer"
            break;;
         2) echo "You chose Laptop computer"
-           # Install brightnessctl
-           sudo pacman -S --noconfirm --needed brightnessctl
+           # Install other packages and enable services
+           sudo pacman -S --noconfirm --needed brightnessctl acpid acpid-openrc
+           sudo rc-update add acpid default
            # Update startup.conf (xautolock command)
            sed -i 's/lock\.png/lock\.png \& zzz/' ~/.config/i3/startup.conf
            # Update polybar config.ini (modules)
