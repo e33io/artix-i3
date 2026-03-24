@@ -29,7 +29,7 @@ echo "========================================================================"
 sudo pacman -S --noconfirm --needed xorg-server xorg-apps i3-wm i3status i3lock xautolock \
 polybar dmenu rofi dunst base-devel upower udisks2 gvfs nfs-utils cifs-utils pipewire pipewire-pulse \
 pipewire-alsa wireplumber libmad gst-libav rsync cronie cronie-openrc git curl wget tar less 7zip \
-xsel xclip xbindkeys xdotool playerctl xdg-desktop-portal-gtk xdg-user-dirs mate-polkit lightdm \
+xsel xclip xbindkeys xdotool yt-dlp playerctl xdg-desktop-portal-gtk xdg-user-dirs mate-polkit lightdm \
 lightdm-openrc lightdm-gtk-greeter lightdm-gtk-greeter-settings feh lxappearance gnome-themes-extra \
 qt5ct qt6ct ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji papirus-icon-theme breeze-icons \
 plymouth pavucontrol-qt kitty xterm bash-completion vim nano micro fzf lazygit htop fastfetch cmus \
