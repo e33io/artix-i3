@@ -155,14 +155,14 @@ info "Formatting EFI partition ($PART_EFI) as FAT32"
 mkfs.fat -F32 -n "EFI" "$PART_EFI"
 
 # =============================================================================
-# STEP 2b - FORMAT /boot PARTITION
+# STEP 3 - FORMAT /boot PARTITION
 # =============================================================================
 
 info "Formatting /boot partition ($PART_BOOT) as EXT4"
 mkfs.ext4 -L "BOOT" "$PART_BOOT"
 
 # =============================================================================
-# STEP 3 - SET UP LUKS1 ENCRYPTION
+# STEP 4 - SET UP LUKS1 ENCRYPTION
 # =============================================================================
 # LUKS1 is used for broad compatibility.  Because GRUB reads /boot from the
 # plaintext partition and never touches this LUKS container, LUKS2 would
@@ -186,14 +186,14 @@ info "Opening LUKS container as /dev/mapper/$CRYPT_NAME"
 cryptsetup luksOpen "$PART_LUKS" "$CRYPT_NAME"
 
 # =============================================================================
-# STEP 4 - FORMAT THE ROOT FILESYSTEM
+# STEP 5 - FORMAT THE ROOT FILESYSTEM
 # =============================================================================
 
 info "Formatting root filesystem ($CRYPT_DEV) as EXT4"
 mkfs.ext4 -L "ROOT" "$CRYPT_DEV"
 
 # =============================================================================
-# STEP 5 - MOUNT FILESYSTEMS
+# STEP 6 - MOUNT FILESYSTEMS
 # =============================================================================
 
 info "Mounting filesystems"
@@ -210,7 +210,7 @@ echo
 lsblk -f "$DISK"
 
 # =============================================================================
-# STEP 6 - BOOTSTRAP BASE SYSTEM
+# STEP 7 - BOOTSTRAP BASE SYSTEM
 # =============================================================================
 
 info "Installing base system with basestrap"
@@ -247,7 +247,7 @@ BASESTRAP_PKGS=(
 basestrap /mnt "${BASESTRAP_PKGS[@]}"
 
 # =============================================================================
-# STEP 7a - GENERATE FSTAB
+# STEP 8 - GENERATE FSTAB
 # =============================================================================
 
 info "Generating /etc/fstab"
@@ -258,7 +258,7 @@ echo "Generated fstab:"
 cat /mnt/etc/fstab
 
 # =============================================================================
-# STEP 7b - CREATE SWAP FILE
+# STEP 9 - CREATE SWAP FILE
 # =============================================================================
 
 info "Creating 2GB swap file"
@@ -269,7 +269,7 @@ printf "\n# swap file\n/swapfile swap swap defaults 0 0\n" >> /mnt/etc/fstab
 echo "vm.swappiness=5" >> /mnt/etc/sysctl.conf
 
 # =============================================================================
-# STEP 8 - CHROOT CONFIGURATION
+# STEP 10 - CHROOT CONFIGURATION
 # =============================================================================
 # Everything below runs inside artix-chroot via a heredoc.
 # Variables are expanded NOW (on the live ISO), not inside the chroot,
@@ -288,14 +288,14 @@ artix-chroot /mnt /bin/bash <<CHROOT
 set -euo pipefail
 
 # ------------------------------------------------------------------
-# 8a. Timezone & hardware clock
+# 10a. Timezone & hardware clock
 # ------------------------------------------------------------------
 echo "==> Setting timezone: ${TIMEZONE}"
 ln -sf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
 hwclock --systohc
 
 # ------------------------------------------------------------------
-# 8b. Locale
+# 10b. Locale
 # ------------------------------------------------------------------
 echo "==> Generating locale: ${LOCALE}"
 sed -i "s/^#${LOCALE} UTF-8/${LOCALE} UTF-8/" /etc/locale.gen
@@ -304,13 +304,13 @@ echo "LANG=${LOCALE}" > /etc/locale.conf
 echo "LC_COLLATE=C"   >> /etc/locale.conf
 
 # ------------------------------------------------------------------
-# 8c. Console keymap
+# 10c. Console keymap
 # ------------------------------------------------------------------
 echo "==> Setting console keymap: ${KEYMAP}"
 echo "KEYMAP=${KEYMAP}" > /etc/vconsole.conf
 
 # ------------------------------------------------------------------
-# 8d. Hostname
+# 10d. Hostname
 # ------------------------------------------------------------------
 echo "==> Setting hostname: ${HOSTNAME}"
 echo "${HOSTNAME}" > /etc/hostname
@@ -321,7 +321,7 @@ cat > /etc/hosts <<EOF
 EOF
 
 # ------------------------------------------------------------------
-# 8e. mkinitcpio - add encrypt hook (no lvm2 since we skip LVM)
+# 10e. mkinitcpio - add encrypt hook (no lvm2 since we skip LVM)
 # ------------------------------------------------------------------
 echo "==> Configuring mkinitcpio"
 # HOOKS order: base udev autodetect modconf kms keyboard keymap
@@ -334,7 +334,7 @@ sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf kms keyboard keymap cons
 mkinitcpio --preset linux
 
 # ------------------------------------------------------------------
-# 8f. GRUB - set kernel parameters (no cryptodisk needed)
+# 10f. GRUB - set kernel parameters (no cryptodisk needed)
 # ------------------------------------------------------------------
 echo "==> Configuring GRUB"
 
@@ -362,7 +362,7 @@ grub-install \
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # ------------------------------------------------------------------
-# 8g. Enable OpenRC services
+# 10g. Enable OpenRC services
 # ------------------------------------------------------------------
 echo "==> Enabling OpenRC services"
 # device-mapper and cryptsetup run at boot level to ensure the LUKS
@@ -374,11 +374,26 @@ rc-update add dbus default
 rc-update add NetworkManager default
 rc-update add dhcpcd default
 
+# ------------------------------------------------------------------
+# 10h. Enable Arch Linux [extra] repo
+# ------------------------------------------------------------------
+echo "==> Enabling Arch Linux [extra] repo"
+pacman -S --noconfirm --needed artix-archlinux-support
+if ! grep -q "^\[extra\]" /etc/pacman.conf; then
+    printf "\n# Arch Linux repos - must remain AFTER Artix repos\n[extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n" \
+        >> /etc/pacman.conf
+    echo "   [extra] repo added."
+else
+    echo "   [extra] repo already present - skipping."
+fi
+pacman-key --populate archlinux
+pacman -Sy
+
 echo "==> Chroot configuration complete."
 CHROOT
 
 # =============================================================================
-# STEP 8h - SET PASSWORDS AND CREATE USER (outside heredoc for tty access)
+# STEP 11 - SET PASSWORDS AND CREATE USER (outside heredoc for tty access)
 # =============================================================================
 # passwd requires an interactive tty - it cannot run inside a heredoc.
 # These steps run as separate artix-chroot invocations after the main
@@ -399,7 +414,7 @@ artix-chroot /mnt sed -i \
     /etc/sudoers
 
 # =============================================================================
-# STEP 9 - CLEANUP AND REBOOT
+# STEP 12 - CLEANUP AND REBOOT
 # =============================================================================
 
 info "Unmounting filesystems"
@@ -419,7 +434,6 @@ echo "  POST-INSTALL CHECKLIST:"
 echo "   - Set up Wi-Fi if needed (nmtui / nmcli)"
 echo "   - Install a display server / DE if desired"
 echo "   - Configure pacman mirrors: /etc/pacman.d/mirrorlist"
-echo "   - Add Arch repos to pacman.conf if you need Arch packages"
 echo "============================================================"
 echo
 read -rp "Reboot now? [y/N] " reboot_now
