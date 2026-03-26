@@ -21,6 +21,7 @@ echo "Update package list and upgrade system"
 echo "========================================================================"
 
 sudo pacman -Syu --noconfirm
+bash ~/artix-i3/scripts/extra-repo.sh
 
 echo "========================================================================"
 echo "Install i3 and other packages"
