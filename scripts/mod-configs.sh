@@ -8,7 +8,7 @@
 # =============================================================================
 
 # Remove unneeded commands
-sed -i -e '/dex/d' -e '/xss-lock/d' ~/.config/i3/startup.conf
+sed -i '/xss-lock/d' ~/.config/i3/startup.conf
 sed -i '/xssproxy/d' ~/.profile
 
 # Add startup commands for xautolock
@@ -28,10 +28,6 @@ printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 
 # Replace systemctl with loginctl
 sed -i 's/systemctl/loginctl/g' ~/.local/bin/rofi-power.sh
-
-# Copy and update mate-color-select.desktop
-cp -R /usr/share/applications/mate-color-select.desktop ~/.local/share/applications/
-sed -i '/OnlyShowIn/d' ~/.local/share/applications/mate-color-select.desktop
 
 # Update ranger preview_images_method
 sed -i -e '/preview_images_method ueberzug/d' \
