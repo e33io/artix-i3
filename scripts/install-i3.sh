@@ -21,7 +21,22 @@ echo "Update package list and upgrade system"
 echo "========================================================================"
 
 sudo pacman -Syu --noconfirm
-bash ~/artix-i3/scripts/extra-repo.sh
+
+if ! grep -q "^\[extra\]" /etc/pacman.conf; then
+    echo "========================================================================"
+    echo "Add Arch [extra] repo"
+    echo "========================================================================"
+
+    sudo pacman -S --noconfirm --needed artix-archlinux-support
+    sudo tee -a /etc/pacman.conf > /dev/null <<'EOF'
+
+# Arch Linux repos must remain AFTER Artix repos
+[extra]
+Include = /etc/pacman.d/mirrorlist-arch
+EOF
+    sudo pacman-key --populate archlinux
+    sudo pacman -Sy
+fi
 
 echo "========================================================================"
 echo "Install i3 and other packages"
