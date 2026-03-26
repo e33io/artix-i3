@@ -45,7 +45,8 @@ while true; do
            break;;
         2) echo "You chose Laptop computer"
            # Install other packages and enable services
-           sudo pacman -S --noconfirm --needed brightnessctl acpid acpid-openrc
+           sudo pacman -S --noconfirm --needed brightnessctl acpid acpid-openrc \
+           libinput-tools wmctrl
            sudo rc-update add acpid default
            # Update startup.conf (xautolock command)
            sed -i 's/lock\.png/lock\.png \& zzz/' ~/.config/i3/startup.conf
