@@ -44,32 +44,10 @@ while true; do
         1) echo "You chose Desktop computer"
             break;;
         2) echo "You chose Laptop computer"
-            # Install other packages and enable services
-            sudo pacman -S --noconfirm --needed brightnessctl acpid acpid-openrc \
-            libinput-tools wmctrl
-            sudo rc-update add acpid default
-            # Update startup.conf (xautolock command)
-            sed -i 's/lock\.png/lock\.png \& zzz/' ~/.config/i3/startup.conf
-            # Update polybar config.ini (modules)
-            sed -i -e 's/time pulseaudio eth tray/time battery pulseaudio wlan tray/' \
-            -e 's/maxlen = .*/maxlen = 140/' -e 's/%a %b/%b/' \
-            -e 's/%M:%S/%M/' ~/.config/i3/polybar/config.ini
-        break;;
+            bash ~/artix-i3/scripts/mod-laptop.sh
+            break;;
         3) echo "You chose VM"
-            # Install and enable spice-vdagent
-            sudo pacman -S --noconfirm --needed spice-vdagent spice-vdagent-openrc
-            sudo rc-update add spice-vdagent default
-            # Add xrandr scaling to i3 startup config
-            printf "%s\n" "" "# Set VM display resolution" \
-            "\$exec xrandr -s 3840x2160" \
-            | tee -a ~/.config/i3/startup.conf > /dev/null
-            # Downscale resolution if Xft.dpi is set to 96 (non-HiDPI)
-            Xft_dpi=$(grep -E '^Xft\.dpi' ~/.Xresources 2>/dev/null | grep -Eo '[0-9]+')
-            if [ "$Xft_dpi" = "96" ]; then
-                sed -i 's/3840x2160/1920x1080/' ~/.config/i3/startup.conf
-            fi
-            # Update LightDM session scale
-            sudo sed -i 's/GDK_SCALE=2/GDK_SCALE=1/' /etc/lightdm/Xgsession
+            bash ~/artix-i3/scripts/mod-vm.sh
             break;;
         *) echo "Invalid selection, please enter a number from the list.";;
     esac
