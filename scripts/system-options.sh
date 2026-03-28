@@ -60,7 +60,7 @@ while true; do
             sudo pacman -S --noconfirm --needed spice-vdagent spice-vdagent-openrc
             sudo rc-update add spice-vdagent default
             # Add xrandr scaling to i3 startup config
-            printf "%s\n" "" "# Set display resolution" \
+            printf "%s\n" "" "# Set VM display resolution" \
             "\$exec xrandr -s 3840x2160" \
             | tee -a ~/.config/i3/startup.conf > /dev/null
             # Downscale resolution if Xft.dpi is set to 96 (non-HiDPI)
