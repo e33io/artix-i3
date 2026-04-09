@@ -21,5 +21,9 @@ if [ "$Xft_dpi" = "96" ]; then
     sed -i 's/3840x2160/1920x1080/' ~/.config/i3/startup.conf
 fi
 
-# Update LightDM session scale
+# Update LightDM session scaling
 sudo sed -i 's/GDK_SCALE=2/GDK_SCALE=1/' /etc/lightdm/Xgsession
+
+# Update plymouth scaling
+sudo sed -i 's/DeviceScale=2/DeviceScale=1/' /etc/plymouth/plymouthd.conf
+sudo mkinitcpio -p linux
