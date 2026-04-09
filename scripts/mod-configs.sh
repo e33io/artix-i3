@@ -29,6 +29,10 @@ printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 # Replace systemctl with loginctl
 sed -i 's/systemctl/loginctl/g' ~/.local/bin/rofi-power.sh
 
+# Replace loginctl lock-session with i3lock
+sed -i 's/loginctl lock-session/i3lock -i ~\/\.cache\/i3lock\/lock\.png/' \
+~/.config/i3/config ~/.local/bin/rofi-power.sh
+
 # Update ranger preview_images_method
 sed -i -e '/preview_images_method ueberzug/d' \
 -e 's/#set preview_images/set preview_images/' ~/.config/ranger/rc.conf
