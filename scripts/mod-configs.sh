@@ -11,6 +11,11 @@
 sed -i '/xss-lock/d' ~/.config/i3/startup.conf
 sed -i '/xssproxy/d' ~/.profile
 
+# Add comment for DPMS
+sed -i '/xset dpms/i\
+# Set monitor DPMS timeout
+' ~/.config/i3/startup.conf
+
 # Add startup commands for xautolock
 printf "%s\n" "" "# Start xautolock with i3lock as locker" \
 "\$exec xautolock -time 5 -locker \"i3lock -i ~/.cache/i3lock/lock.png\"" \
