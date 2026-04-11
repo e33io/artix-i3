@@ -16,22 +16,18 @@ sed -i '/xset dpms/i\
 # Set monitor DPMS timeout
 ' ~/.config/i3/startup.conf
 
-# Add startup commands for xautolock
+# Add startup commands for xautolock and pipewire
 printf "%s\n" "" "# Start xautolock with i3lock as locker" \
 "\$exec xautolock -time 5 -locker \"i3lock -i ~/.cache/i3lock/lock.png\"" \
-| tee -a ~/.config/i3/startup.conf > /dev/null
-
-# Add startup commands for pipewire
-printf "%s\n" "" "# Start pipewire and wireplumber" \
-"exec --no-startup-id pipewire" "exec --no-startup-id wireplumber" \
-"exec --no-startup-id pipewire-pulse" \
+"" "# Start pipewire and wireplumber" "exec --no-startup-id pipewire" \
+"exec --no-startup-id wireplumber" "exec --no-startup-id pipewire-pulse" \
 | tee -a ~/.config/i3/startup.conf > /dev/null
 
 # Add aliases for reboot and power off
 printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 "alias poweroff='loginctl poweroff'" | tee -a ~/.bashrc > /dev/null
 
-# Replace systemctl with loginctl
+# Replace systemctl with loginctl and remove "Logout" option
 awk '
 # Remove "Logout" from options array
 /^[[:space:]]*"Logout"/ {
