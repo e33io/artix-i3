@@ -108,16 +108,16 @@ echo "========================================================================"
 bash ~/scripts/install-custom-themes.sh
 
 echo "========================================================================"
-echo "Run system options script to update device-specific configuration files"
-echo "========================================================================"
-
-bash ~/artix-i3/scripts/system-options.sh
-
-echo "========================================================================"
 echo "Update configs for use with Artix (OpenRC)"
 echo "========================================================================"
 
 bash ~/artix-i3/scripts/mod-configs.sh
+
+echo "========================================================================"
+echo "Run system options script to update device-specific configuration files"
+echo "========================================================================"
+
+bash ~/artix-i3/scripts/system-options.sh
 
 echo "========================================================================"
 echo "Update user directory and enable services"
