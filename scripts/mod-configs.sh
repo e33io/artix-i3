@@ -87,7 +87,7 @@ printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 mkdir -p ~/.config/autostart
 printf "%s\n" "[Desktop Entry]" "Version=1.0" "Type=Application" \
 "Name=audio-default" "Comment=set default mute and default volume level" \
-"Exec=sh -c 'sleep 1; pactl set-sink-mute @DEFAULT_SINK@ false; sleep 6; pactl set-sink-volume @DEFAULT_SINK@ 25%'" \
+"Exec=sh -c 'sleep 1; pactl set-sink-mute @DEFAULT_SINK@ false; sleep 6; pactl set-sink-volume @DEFAULT_SINK@ 20%'" \
 "Icon=xfce4-mixer" "StartupNotify=false" "Terminal=false" "NoDisplay=true" \
 "Hidden=false" > ~/.config/autostart/audio-default.desktop
 
