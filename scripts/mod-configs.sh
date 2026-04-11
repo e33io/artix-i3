@@ -23,6 +23,10 @@ printf "%s\n" "" "# Start xautolock with i3lock as locker" \
 "exec --no-startup-id wireplumber" "exec --no-startup-id pipewire-pulse" \
 | tee -a ~/.config/i3/startup.conf > /dev/null
 
+# Replace loginctl lock-session with i3lock
+sed -i 's/loginctl lock-session/i3lock -i ~\/\.cache\/i3lock\/lock\.png/' \
+~/.config/i3/config
+
 # Add aliases for reboot and power off
 printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 "alias poweroff='loginctl poweroff'" | tee -a ~/.bashrc > /dev/null
