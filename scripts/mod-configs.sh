@@ -7,7 +7,7 @@
 # Use this script at your own risk, it will overwrite existing files!
 # =============================================================================
 
-# Remove unneeded commands
+# Remove incompatible commands
 sed -i '/xss-lock/d' ~/.config/i3/startup.conf
 sed -i '/xssproxy/d' ~/.profile
 
@@ -27,7 +27,7 @@ printf "%s\n" "" "# Start xautolock with i3lock as locker" \
 sed -i 's/loginctl lock-session/i3lock -i ~\/\.cache\/i3lock\/lock\.png/' \
 ~/.config/i3/config
 
-# Add aliases for reboot and power off
+# Add bash aliases for reboot and power off
 printf "%s\n" "" "# Reboot and power off" "alias reboot='loginctl reboot'" \
 "alias poweroff='loginctl poweroff'" | tee -a ~/.bashrc > /dev/null
 

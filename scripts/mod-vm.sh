@@ -15,6 +15,7 @@ sudo rc-update add spice-vdagent default
 printf "%s\n" "" "# Set VM display resolution" \
 "\$exec xrandr -s 3840x2160" \
 | tee -a ~/.config/i3/startup.conf > /dev/null
+
 # Downscale resolution if Xft.dpi is set to 96 (non-HiDPI)
 Xft_dpi=$(grep -E '^Xft\.dpi' ~/.Xresources 2>/dev/null | grep -Eo '[0-9]+')
 if [ "$Xft_dpi" = "96" ]; then

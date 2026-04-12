@@ -24,7 +24,7 @@ sudo pacman -Syu --noconfirm
 
 if ! grep -q "^\[extra\]" /etc/pacman.conf; then
     echo "========================================================================"
-    echo "Add Arch [extra] repo"
+    echo "Add Arch [extra] repo and update package list"
     echo "========================================================================"
 
     sudo pacman -S --noconfirm --needed artix-archlinux-support
@@ -114,7 +114,7 @@ echo "========================================================================"
 bash ~/artix-i3/scripts/system-options.sh
 
 echo "========================================================================"
-echo "Update configs for use with Artix (OpenRC)"
+echo "Update Arch configs for use with Artix (OpenRC)"
 echo "========================================================================"
 
 bash ~/artix-i3/scripts/mod-configs.sh
