@@ -11,16 +11,20 @@
 sed -i '/xss-lock/d' ~/.config/i3/startup.conf
 sed -i '/xssproxy/d' ~/.profile
 
+# Add startup commands for pipewire
+printf "%s\n" "" "pgrep -x pipewire >/dev/null || pipewire &" \
+"pgrep -x pipewire-pulse >/dev/null || pipewire-pulse &" \
+"pgrep -x wireplumber >/dev/null || wireplumber &" \
+| tee -a ~/.xprofile > /dev/null
+
 # Add comment for DPMS
 sed -i '/xset dpms/i\
 # Set monitor DPMS timeout
 ' ~/.config/i3/startup.conf
 
-# Add startup commands for xautolock and pipewire
+# Add startup commands for xautolock
 printf "%s\n" "" "# Start xautolock with i3lock as locker" \
 "\$exec xautolock -time 5 -locker \"i3lock -i ~/.cache/i3lock/lock.png\"" \
-"" "# Start pipewire and wireplumber" "exec --no-startup-id pipewire" \
-"exec --no-startup-id wireplumber" "exec --no-startup-id pipewire-pulse" \
 | tee -a ~/.config/i3/startup.conf > /dev/null
 
 # Replace loginctl lock-session with i3lock
