@@ -14,8 +14,7 @@ sed -i '/xssproxy/d' ~/.profile
 # Add startup commands for pipewire and wireplumber
 printf "%s\n" "pgrep -x pipewire >/dev/null || pipewire &" \
 "pgrep -x pipewire-pulse >/dev/null || pipewire-pulse &" \
-"pgrep -x wireplumber >/dev/null || wireplumber &" \
-| tee -a ~/.xprofile > /dev/null
+"pgrep -x wireplumber >/dev/null || wireplumber &" > ~/.xprofile
 
 # Add comment for DPMS
 sed -i '/xset dpms/i\
