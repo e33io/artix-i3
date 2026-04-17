@@ -12,7 +12,8 @@ sed -i '/xss-lock/d' ~/.config/i3/startup.conf
 sed -i '/xssproxy/d' ~/.profile
 
 # Add startup commands for pipewire and wireplumber
-printf "%s\n" "" "pgrep -x pipewire >/dev/null || pipewire &" \
+printf "%s\n" "" "# Start pipewire and wireplumber" \
+"pgrep -x pipewire >/dev/null || pipewire &" \
 "pgrep -x pipewire-pulse >/dev/null || pipewire-pulse &" \
 "pgrep -x wireplumber >/dev/null || wireplumber &"
 | tee -a ~/.profile > /dev/null
