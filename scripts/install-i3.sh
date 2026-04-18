@@ -27,15 +27,7 @@ if ! grep -q "^\[extra\]" /etc/pacman.conf; then
     echo "Add Arch [extra] repo and update package list"
     echo "========================================================================"
 
-    sudo pacman -S --noconfirm --needed artix-archlinux-support
-    sudo tee -a /etc/pacman.conf > /dev/null <<'EOF'
-
-# Arch Linux repos must remain AFTER Artix repos
-[extra]
-Include = /etc/pacman.d/mirrorlist-arch
-EOF
-    sudo pacman-key --populate archlinux
-    sudo pacman -Sy
+    bash ~/artix-i3/scripts/mod-repos.sh
 fi
 
 echo "========================================================================"
@@ -129,11 +121,7 @@ sed -i "s/\/user\//\/$(whoami)\//" ~/.config/gtk-3.0/bookmarks \
 ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml 2>/dev/null
 echo "i3 installed via e33io script: $(date '+%B %d, %Y, %H:%M')" \
 | tee -a ~/.install-info > /dev/null
-sudo rc-update add lightdm default
-sudo rc-update add cronie default
-rc-update add -U pipewire default
-rc-update add -U pipewire-pulse default
-rc-update add -U wireplumber default
+bash ~/artix-i3/scripts/rc-services.sh
 rm -rf ~/dots ~/scripts
 
 echo "========================================================================"
