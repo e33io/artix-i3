@@ -42,18 +42,17 @@ echo "========================================================================"
 echo "Install i3 and other packages"
 echo "========================================================================"
 
-sudo pacman -S --noconfirm --needed xorg-server xorg-apps i3-wm i3status i3lock \
-xautolock polybar dmenu rofi dunst base-devel upower udisks2 gvfs nfs-utils cifs-utils \
-pipewire pipewire-openrc pipewire-pulse pipewire-pulse-openrc wireplumber wireplumber-openrc \
-pipewire-alsa pipewire-jack libmad gst-libav rsync cronie cronie-openrc git curl wget tar \
-less 7zip xsel xclip xbindkeys xdotool yt-dlp playerctl dex xdg-desktop-portal-gtk xdg-user-dirs \
-mate-polkit lightdm lightdm-openrc lightdm-gtk-greeter lightdm-gtk-greeter-settings feh \
-lxappearance gnome-themes-extra qt5ct qt6ct ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji \
-papirus-icon-theme breeze-icons plymouth pavucontrol-qt kitty python-pillowfight xterm \
-bash-completion vim nano micro fzf lazygit htop fastfetch cmus cava ranger ueberzug highlight \
-atool w3m mediainfo perl-image-exiftool thunar thunar-archive-plugin thunar-volman tumbler \
-ffmpegthumbnailer xarchiver atril scrot imagemagick imv mpv parole mousepad galculator \
-timeshift signal-desktop gpick darktable gimp inkscape filezilla libreoffice
+sudo pacman -S --noconfirm --needed xorg-server xorg-apps i3-wm i3status i3lock xautolock \
+polybar dmenu rofi dunst base-devel upower udisks2 gvfs nfs-utils cifs-utils pipewire pipewire-openrc \
+pipewire-pulse pipewire-pulse-openrc wireplumber wireplumber-openrc pipewire-alsa pipewire-jack \
+gst-plugin-pipewire gst-libav libmad rsync cronie cronie-openrc git curl wget tar less 7zip xsel xclip \
+xbindkeys xdotool yt-dlp playerctl dex xdg-desktop-portal-gtk xdg-user-dirs mate-polkit lightdm \
+lightdm-openrc lightdm-gtk-greeter lightdm-gtk-greeter-settings feh lxappearance gnome-themes-extra \
+qt5ct qt6ct ttf-dejavu noto-fonts noto-fonts-cjk noto-fonts-emoji papirus-icon-theme breeze-icons \
+plymouth pavucontrol-qt kitty python-pillowfight xterm bash-completion vim nano micro fzf lazygit htop \
+fastfetch cmus cava ranger ueberzug highlight atool w3m mediainfo perl-image-exiftool thunar \
+thunar-archive-plugin thunar-volman tumbler ffmpegthumbnailer xarchiver atril scrot imagemagick imv mpv \
+parole mousepad galculator timeshift signal-desktop gpick darktable gimp inkscape filezilla libreoffice
 
 echo "========================================================================"
 echo "Clone custom scripts"
