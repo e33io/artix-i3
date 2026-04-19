@@ -12,6 +12,9 @@ sudo pacman -S --noconfirm --needed brightnessctl acpid acpid-openrc \
 libinput-tools wmctrl
 sudo rc-update add acpid default
 
+# Add user to video group
+sudo usermod -aG video $USER
+
 # Update startup.conf (xautolock command)
 sed -i 's/lock\.png/lock\.png \& loginctl suspend/' ~/.config/i3/startup.conf
 
