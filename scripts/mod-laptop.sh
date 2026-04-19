@@ -13,7 +13,7 @@ libinput-tools wmctrl
 sudo rc-update add acpid default
 
 # Update startup.conf (xautolock command)
-sed -i 's/lock\.png/lock\.png \& zzz/' ~/.config/i3/startup.conf
+sed -i 's/lock\.png/lock\.png \& loginctl suspend/' ~/.config/i3/startup.conf
 
 # Update polybar config.ini (modules)
 sed -i -e 's/time pulseaudio eth tray/time battery pulseaudio wlan tray/' \
