@@ -46,6 +46,9 @@ fastfetch cmus cava ranger ueberzug highlight atool w3m mediainfo perl-image-exi
 thunar-archive-plugin thunar-volman tumbler ffmpegthumbnailer xarchiver atril scrot imagemagick imv mpv \
 parole mousepad galculator timeshift signal-desktop gpick darktable gimp inkscape filezilla libreoffice
 
+# Add user to storage group
+sudo usermod -aG storage $USER
+
 echo "========================================================================"
 echo "Clone custom scripts"
 echo "========================================================================"
