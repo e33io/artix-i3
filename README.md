@@ -6,7 +6,7 @@
 - Custom [i3](https://i3wm.org) installation for [Artix](https://artixlinux.org) (OpenRC)
 - Base set of apps for a ready-to-use desktop session
 - Options during installation:
-	- Install Xorg or XLibre X server
+	- Install Xorg or [XLibre](https://github.com/X11Libre/xserver) X server
 	- HiDPI or standard HD display scaling
 	- Device-specific optimizations for desktop, laptop or VM devices
 - [Polybar](https://github.com/polybar/polybar) for system bar and app tray
