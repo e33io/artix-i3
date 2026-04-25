@@ -26,15 +26,15 @@ while true; do
     echo "No X server was found on this system."
     echo "The option below lets you select an X server to install."
     echo "========================================================================"
-    echo "  1) Xorg"
-    echo "  2) XLibre"
+    echo "  1) XLibre"
+    echo "  2) Xorg"
     echo "------------------------------------------------------------------------"
     echo
     read -rp "Which X server would you like to install? " n
     case "$n" in
-        1) bash ~/artix-i3/scripts/install-xorg.sh
+        1) bash ~/artix-i3/scripts/install-xlibre.sh
             break;;
-        2) bash ~/artix-i3/scripts/install-xlibre.sh
+        2) bash ~/artix-i3/scripts/install-xorg.sh
             break;;
         *) echo "Invalid selection, please enter a number from the list.";;
     esac
